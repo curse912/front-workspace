@@ -1,0 +1,57 @@
+/*문제 1*/
+div[class=highlight][id*=container]{
+    background-color: yellow;
+}
+
+/*문제 2*/
+div > p {
+    color: red;
+}
+p:not(div>p){
+    color: pink;
+}
+
+/*문제 3*/
+#container3 > input:not([type=submit]){
+    border: 1px solid blue;
+}
+
+/*문제 4*/
+#container4 > h1 , [class=title]{
+    color: green;
+    font-size: 20px;
+}
+
+/*문제 5*/
+div[class^=user]{
+    background-color: lightgray;
+}
+div[class$=info]{
+    color:red;
+}
+div[class~=product]{
+    background-color: coral;
+}
+div[class|=admin]{
+    background-color: greenyellow;
+}
+
+/*문제 6*/
+#container6 > input{
+    background-color: yellow;
+}
+
+#container6 > input:hover{
+    background-color: green;
+}
+
+/*문제 7*/
+#container7 > li:nth-child(2){
+    font-weight: bold;
+}
+
+/*문제 8*/
+
+/*문제 9*/
+
+/*문제 10*/
