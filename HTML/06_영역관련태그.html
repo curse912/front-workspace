@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영역관련태그</title>
+    <style>
+        div,span{
+            border: 1px solid black;
+        }
+
+        #div1,#span1{
+            background-color: red;
+        }
+
+        #div2,#span2{
+            background-color: yellow;
+        }
+
+        #div3,#span3{
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>영역 관련 태그</h1>
+    <!--
+        블럭 요소   : 한 줄 단위로 영역을 차지하는 요소
+                      줄바꿈이 이미 적용되어 다음 요소 출력시 해당 요소의 다음 줄에 출력된다.
+                      ex) h, p, pr, ... , "div"
+        인라인 요소 : content내용에 해당되는 부분만 영역을 차지하는 요소들.
+                      줄바꿈이 적용되지않아 옆으로 이어져서 출력된다.
+                      ex) b, s, mark, input, ... ,'span'
+    -->
+
+    <h2>div 태그와 span태그 차이점</h2>
+    
+    <h3>div(dividion)태그 : 블럭요소 (한 줄 단위 영역차지)</h3>
+    <div id="div1">첫번째 영역</div>
+    <div id="div2">두번째 영역</div>
+    <div id="div3">세번째 영역</div>
+    <!-- br불필요-->
+
+    <h3>span 태그 : 인라인 요소(content영역만을 차지)</h3>
+    <span id="span1">1번째 영역</span>
+    <span id="span2">2번째 영역</span>
+    <span id="span3">3번째 영역</span>
+    <!-- br 하지 않으면 개행 불가-->
+
+    <h3>div 태그 : 컨텐츠 영역의 값을 커다란 사각형 박스로 영역을 지정</h3>
+    <div>
+        소담스러운 노년에게서 미묘한 귀는 기관같이 황금 봄날의 이것이야말로 석가는 따뜻한 그들은 자신과 보이는 영원히 낙원을 온갖 뜨거운지라 거친 소리다 사람은 것이 인간의 같지 곳이 것은 가슴에 이상이 예수는 만천하의 구하지 길을 청춘 주며 인도하겠다는 밥을 청춘의 군영과 순진한지라 귀중한 품으며 공자는 되려니와 청춘이 있으랴 구할 풍부하게 손을 인생에 철환하였는가 피어나는 그들의 위하여 사막이다 긴지라 더운지라 눈이 힘차게 들어 방황하였으며 가슴이 품었기 발휘하기 보는 찾아다녀도 고동을 끝까지 속에 수 이상 사라지지 날카로우나 가진 전인 만물은 대한 이상은 이것이다 사랑의 눈에 부패를 뜨고 물방아.
+
+        어디 끓는다 아니한 귀는 그들의 속에서 기관같이 청춘을 이성은 같은 피고 고행을 두기 얼마나 피가 되는 투명하되 인간의 봄바람이다 품었기 천자만홍이 끓는 않는 오아시스도 쓸쓸하랴 너의 같이 풀밭에 피다 하여도 평화스러운 이 풍부하게 불어 대한 수 우리의 낙원을 착목하는 바이며 없으면 관현악이며 대고 풀이 죄악에 열락의 꽃 위하여서 것이다 점염이 못할 있음으로써 무한한 것은 청춘의 우리는 황금 그들을 길을 얼음에 품에 군영과 구할 무엇이 열매를 바 있는 뭇 사랑의 대중을 장식하는 찬미를 피는 인생에 생의 있으며 아름다우냐 시대의 우리 구하기 같으며 든 품으며.
+    </div>
+
+    <h3>span 태그 : 컨텐츠 영역의 값을 문장단위로 영역을 지정</h3>
+    <span>
+        소담스러운 노년에게서 미묘한 귀는 기관같이 황금 봄날의 이것이야말로 석가는 따뜻한 그들은 자신과 보이는 영원히 낙원을 온갖 뜨거운지라 거친 소리다 사람은 것이 인간의 같지 곳이 것은 가슴에 이상이 예수는 만천하의 구하지 길을 청춘 주며 인도하겠다는 밥을 청춘의 군영과 순진한지라 귀중한 품으며 공자는 되려니와 청춘이 있으랴 구할 풍부하게 손을 인생에 철환하였는가 피어나는 그들의 위하여 사막이다 긴지라 더운지라 눈이 힘차게 들어 방황하였으며 가슴이 품었기 발휘하기 보는 찾아다녀도 고동을 끝까지 속에 수 이상 사라지지 날카로우나 가진 전인 만물은 대한 이상은 이것이다 사랑의 눈에 부패를 뜨고 물방아.
+
+        어디 끓는다 아니한 귀는 그들의 속에서 기관같이 청춘을 이성은 같은 피고 고행을 두기 얼마나 피가 되는 투명하되 인간의 봄바람이다 품었기 천자만홍이 끓는 않는 오아시스도 쓸쓸하랴 너의 같이 풀밭에 피다 하여도 평화스러운 이 풍부하게 불어 대한 수 우리의 낙원을 착목하는 바이며 없으면 관현악이며 대고 풀이 죄악에 열락의 꽃 위하여서 것이다 점염이 못할 있음으로써 무한한 것은 청춘의 우리는 황금 그들을 길을 얼음에 품에 군영과 구할 무엇이 열매를 바 있는 뭇 사랑의 대중을 장식하는 찬미를 피는 인생에 생의 있으며 아름다우냐 시대의 우리 구하기 같으며 든 품으며.
+    </span>
+
+    <hr>
+
+    <h1>iFrame 태그</h1>
+    <p>
+        - 현재 문서 내에 다른 웹페이즈 문서를 추가하는 태그
+    </p>
+
+    <iFrame src="04_이미지와멀티미디어.html" width="600"></iFrame>
+
+    <br><br>
+
+    <iFrame src="<iframe width="934" height="525" src="https://www.youtube.com/embed/I24GTW0O_hc" title="Playlistㅣ재즈 UP 능률 UP 🙌ㅣ적당히 신나고 듣기 좋은 경쾌한 카페 음악ㅣ작업할 때, 공부할 때, 집중할 때 ✍ㅣJazz Background Music" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>"
+        ></iFrame>
+
+        
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" >영상</iframe>
+
+
+</body>
+</html>
