@@ -1,13 +1,21 @@
 /*문제 1*/
-div[class=highlight][id*=container]{
+#container1.highlight{
     background-color: yellow;
 }
 
+
 /*문제 2*/
-div > p {
+/*
+#container2 p{
+    color: pink;
+}
+    얘를 앞에 하면 우선순위로 
+    핑크먼저 바꿈 -> 위에 레드
+*/
+#container2 > p {
     color: red;
 }
-p:not(div>p){
+#container2:not(div>p){
     color: pink;
 }
 
@@ -17,10 +25,11 @@ p:not(div>p){
 }
 
 /*문제 4*/
-#container4 > h1 , [class=title]{
+#container4 > h1 ,  #container4 > [class=title]{
     color: green;
     font-size: 20px;
 }
+/* ','로 이을때 부모를 꼭 넣어줘야함*/
 
 /*문제 5*/
 div[class^=user]{
@@ -37,7 +46,7 @@ div[class|=admin]{
 }
 
 /*문제 6*/
-#container6 > input{
+#container6 > input:focus{
     background-color: yellow;
 }
 
@@ -46,12 +55,27 @@ div[class|=admin]{
 }
 
 /*문제 7*/
-#container7 > li:nth-child(2){
+#container7 > li:nth-of-type(2){
     font-weight: bold;
 }
 
 /*문제 8*/
+.container8 > p:only-of-type{
+    color: blue;
+}
 
 /*문제 9*/
+#container9 > p[title*=import]:not(/*#container9 > */p[title*=not-important]){
+    background-color: red;
+}
+
 
 /*문제 10*/
+ul#menu > li.active{
+    color: red;
+}
+/* 
+    . 과 #
+     - .이 class
+     - #이 id
+*/

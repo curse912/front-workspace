@@ -1,0 +1,21 @@
+
+/**/
+
+/* 3순위 아이디 선택자 */
+#test1{
+    background-color: grey;
+    color: white;
+    height: 100px;
+}
+
+/* 4순위 틀래스 선택자 */
+.cls1{
+    background-color: olive;
+}
+
+/* 5순위 태그 선택자 */
+div{
+    width: 200px;
+    height: 200px;
+    background-color: salmon !important /* 1순위 태그선택자 */;
+}
