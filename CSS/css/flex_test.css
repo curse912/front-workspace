@@ -1,0 +1,74 @@
+/* 기본 설정 */
+body {
+  margin: 0;
+}
+
+.wrapper {  
+  min-height: 100vh;
+  border: 2px solid #333;
+  background-color: #1a1a1a;
+}
+
+/* 헤더와 푸터 */
+.header,
+.footer {
+  background-color: #222;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border: 2px solid #444;
+}
+
+
+.content {
+    display: flex;   
+}
+
+/* 사이드바 
+   직접 작성해보기
+*/
+.sidebar {
+    width: 800px;
+    background-color: rgb(248, 248, 248);
+    border: 2px solid darkgrey;
+}
+
+.sidebar>.menu>span{
+    display: block;
+    background-color: #d3d3d3;
+    padding: 10px;
+    margin: 10px;
+    border: 2px solid darkgrey;
+
+}
+
+
+/* 메인 게시글 영역 
+*/
+.main {
+    display: flex;
+    background-color: rgb(248, 248, 248);
+    border: 2px solid darkgrey;
+    
+    flex-wrap: wrap;
+    padding: 20px;
+    align-content: flex-start;
+
+}
+
+/* 카드 스타일
+  팽창 정도 1
+  수축 정도 1
+  크기 30% 
+*/
+.card {
+  flex: 1 1 30%;
+  min-width: 200px;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border: 2px solid #bbb;
+  text-align: center;
+
+  margin: 10px;
+}
