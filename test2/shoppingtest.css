@@ -2,31 +2,30 @@ body{
     margin: 0;
     background-color: #e6e6e6;
 }
-
+img{
+    width: 120px;
+    height: 150px;
+}
 .wrapper{
     border: 2px solid black;
-    background-color: rgba(150, 150, 150, 0.363);
+    background-color: rgba(223, 223, 223, 0.363);
 }
 
-.header{
+.header{/**/
     background-color: rgb(0, 47, 255);
     color: white;
     text-align: center;
     padding: 20px;
     border: 2px solid black;
 }
-.footer{
+.footer{/**/
     background-color: rgb(22, 22, 22);
     color: white;
     text-align: center;
     padding: 20px;
     border: 2px solid black;
 }
-
-.content{
-    display: flex;
-}
-.sidebar{
+.sidebar{/**/
     width: 400px;
     background-color: white;
     padding: 10px;
@@ -35,66 +34,59 @@ body{
     border: 2px solid darkgrey;
 }
 
-.main{
+.content{
+    display: flex;
+    text-align: center;   
+}
 
+.main{
     display:flex;
     grid: 10px;
     padding: 20px;
-    border: 2px solid darkgrey;
     flex-direction: column;
 }
 
-img{
-    width: 120px;
-    height: 150px;
 
-}
-.box>p{
-    white-space: nowrap;
-    font-size: 12px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 130px;
-}
-.box>pre{
-    font-size: 10px;
-}
 
-.name{
-    text-align: center;
-    
-    
-}
 .grid{
-    
-    width: 900px;
+    /*width: 900px;*/
     display:flex;
     flex-wrap:wrap;
-
+    
     align-items: center;
     justify-content: space-evenly;
-
-    padding: 20px;
     
-
+    padding: 20px;    
 }
 
 .box {
     width: 120px;
-    background-color: #ffffff;
+    background-color: white;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     border: 2px solid #bbb;
     text-align: center;
-
+    
     margin: 10px;
     
     flex-wrap: wrap;
     align-content: space-between;
     
 }
+.box>p{
+    white-space: nowrap;
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 130px;
+    font-weight: bold;
+}
+.box>pre{
+    font-size: 11px;
+}
 
-.add{
+
+.add{ /*장바구니 담기버튼*/
     height: 20px;
     background-color: black;
     color: white;

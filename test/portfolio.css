@@ -1,0 +1,21 @@
+th{
+            background-color: rgb(255, 168, 96);
+            color:white;
+}
+th,td{
+    border: 1px solid black;
+}
+
+tbody{           
+    background-color: rgb(255, 244, 194);
+}
+
+#field>div{
+    display: flex;
+}
+#field>div>p{
+    width: 70px;
+}
+#button{
+    justify-self:center ;
+}
