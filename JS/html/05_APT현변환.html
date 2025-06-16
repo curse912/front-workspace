@@ -195,6 +195,200 @@
             
         }
     </script>
+    <h1>Date</h1>
+    <input type="button" value="실행" onclick="test5()">
+    <script>
+        function test5(){
+            var now = new Date();   //new 키워드가 없어도 가능함!
+            console.log(now);
+
+            var time1 = new Date(2025,5,16);    //1월이 0부터 시작함
+            console.log(time1);
+            
+            console.log(displayDateTime(now));
+        }
+
+        //매서드 생성
+        var displayDateTime = function(/*매개변수*/ dt){
+            const year = dt.getFullYear();
+            const month = dt. getMonth()+1;
+            const date = dt. getDate();
+
+            return year+"-"+(month<10 ? "0"+month : month)+"-"+date;
+            // 삼항연산자 조건 :  달이 10보다 작으면  01 02 와 같이 앞에 0을 붙여서 출력
+            //2025-6-9;
+        };
+    </script>
+
+    <h2>형변환</h2>
+    <input type="button" value="실행" onclick="test6()">
+    <script>
+        //const :  함수를 만들때 주로 사용하는 예약어
+        const test6 = function(){
+            console.log(3+7+"7");   //107
+            console.log(7-"7");     //0  -> 7 -:7 => 7 - 7
+            console.log(7*"7");     //49
+            console.log(7/"7");     //1
+            console.log(7%"4");     //3
+            // "7"(문자열)은 정수형으로 "자동형변환" 됨
+
+            console.log(7%"a");     //NaN :  Not a Number
+            //파싱 불가능한 문자를 숫자로 형변환시 반환되는값
+            console.log(typeof NaN);    //0 1 2 : number, NaN : number
+            
+            console.log(7 + true);  //8
+            console.log(7+false);   //7
+
+            console.log([]+1);      //1
+            /*
+                [] + 1 => [].toString() + 1
+                => '' + 1 => '1'
+            
+            */
+            console.log([].toString());
+            // 빈배열 => 빈문자열 => 형변환
+
+            console.log([1].toString());
+            console.log([1]+1);
+
+            console.log({}.toString+1);
+            // {}.toString() -> 문자열 + 1 ->
+            // 문자열 + "1" = > 문자열1
+
+            function fn(){}
+            console.log(fn+1);
+        };
+    </script>
+
+    <h2>Number | parseInt | parseFloat</h2>
+    <input type="button" value="실행" onclick="test7()">
+    <script>
+        const test7 = function(){
+            let num = "1234.567원";
+            console.log(Number(num));   //원 제외하면 숫자 출력 가능
+            // 자동형변환시 사용되는 매서드. 변환불가능한 문자열인 경우 NaN리턴
+
+            //변환 가능한 범위까지 반환
+            console.log(parseInt(num)); //Int 자리까지만 형변환하여 출력
+            console.log(parseFloat(num));   //Float 자리까지 형변환하여 출력
+
+            // NaN은 동등연산 불가!
+            //NaN==NaN -->false
+        };
+    </script>
+
+    <h2>NaN | Infinity</h2>
+    <input type="button" value="실행" onclick="test8()">
+    <script>
+        const test8 = function(){
+            console.log(-10/0); 
+            //값을 0으로 나누는 경우 Infinity 반환
+            console.log(typeof (10/0));
+
+            console.log((10/0) == Infinity);
+            console.log((10/"a")==NaN); //NaN은 동등비교 연산 불가
+            console.log(isNaN(10/"A"));
+            //산술연상결과가 NaN인지 아닌지 확인할 때 사용하는 함수
+        };
+    </script>
+
+    <h2>논리형 형변환</h2>
+    <input type="button" value="실행" onclick="test9()">
+    <script>
+        const test9 = function(){
+            /*
+                자바스크립트는 변수 , 리터럴을 boolean형으로 형변환이 가능
+                값이 존재하지 않는 것은 flase로 치환
+                 - 0, -0, 0.0, "", '', undefined, null, NaN
+                값이 존재하는 것은 true로 치환
+                 - 123, 123.123, "하이", newDate(), [], {}
+                if(값), 삼항연산자
+                Boolean(값)
+            */
+           console.log(Boolean(123));
+           console.log(Boolean(-123));
+           console.log(Boolean(3.14));
+           console.log(Boolean("ABCD"));
+           console.log(Boolean(new Date()));
+           console.log(Boolean([]));    //new Array()
+           console.log(Boolean({}));    //new Object()
+
+           console.log(Boolean(0));
+           console.log(Boolean(""));
+           console.log(Boolean(undefined));
+           console.log(Boolean(null));
+           console.log(Boolean(NaN));
+
+
+           var obj = 0;
+           if(obj){
+                console.log("obj에 값이 있다.");
+           }else{
+                console.log("obj에 값이 없다.");
+           }
+
+           console.log( "0" == 0 );
+           //"0" == 0 --> Number("0") == 0
+           console.log([]==0);
+           // [] == 0 --> [].toString() --> '' == 0
+           // --> Number('') == 0 --> 0 == 0
+           console.log([]=="0");
+           //[].toString() == "0" --> '' == "0" --> false
+        }
+    </script>
+
+    <h2>엄격비교연산자</h2>
+    <input type="button" value="실행" onclick="test10()">
+    <script>
+        /*
+            일반 동등 비교 연산자
+             == 자료형이 다른경우, "자동 형변환" 후 동등비교 수행
+             != 자료형이 다른경우, "자동 형변환" 후 동등비교 수행
+
+            엄격 동등 비교 연산자
+             === 값, 타입을 모두 검사하는 연산자, 값은 같으나 타입이 다른 경우 즉시 false반환.
+             !==
+        */
+       const test10 = function(){
+            console.log( 3 == "3" );
+            console.log( 3 != "3" );
+
+            console.log( 3 === "3" );
+            console.log( 3 === 3 );
+            console.log( 3 !== "3" );
+
+            console.log(null == undefined); //true
+            console.log(null === undefined);    //false 타입이 다름
+       };
+    </script>
+    
+    <h2>짧은 조건문</h2>
+    <input type="button" value="실행" onclick="test11()">
+    <script>
+        const test11 = function(){
+            let num = 10;
+            /*
+            if(num%2 === 0){
+                console.log("짝수");
+            }else{
+                console.log('홀수');
+            }
+            */
+
+            // 짧은 조건문
+            // 조건식A && 조건식B (실행할 코드 기술가능)
+            num%2 == 0 && console.log("짝수다");
+            num%2 != 0 && console.log("홀수다");
+            
+            // 조건식A || 조건식B
+        };
+    </script>
+
+
+
+
+
+
 
 </body>
 </html>
