@@ -15,7 +15,15 @@
 	가산기 : <input type="number" id="myadder" >
 	<button onclick="addFunc();">실행</button>
 	<script>
+		// 선언변수 사용 금지, 클로져를  활용할것
 		function mkAddFunc (){
+			let num = 0;
+			return function(){
+				const myadder = document.querySelector("#myadder");
+				// num += Number(myadder.vlaue);
+				num += myadder.value*1;
+				console.log(num);
+			}
 
 		} 
 

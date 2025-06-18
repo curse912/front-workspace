@@ -23,10 +23,16 @@
    */ 
   function test1(){
     //1.객체배열 생성 및 요소추가
-    var students = [];
+    var students = [
+      new Student('김동현', 90, 56, 56, 44, 34),
+      new Student('유관순', 76, 23, 56, 44, 34),
+      new Student('임꺽정', 100, 56, 50, 32, 88)
+    ];
     
     //2.반복문을 통해 객체배열 순회. 요소별 toString메소드 호출하기
     for(var student of students){
+      console.log(student.toString());
+      
       
     }
     /* 
@@ -43,6 +49,28 @@
    * 
    * Student에 getSum, getAvg, toString메서드 추가
    */ 
+  class Student{
+    constructor(name, java, oracle, html5, css3, javascript){
+      this.name = name;
+      this.java = java;
+      this.oracle = oracle;
+      this.html5 = html5;
+      this.css3 = css3;
+      this.javascript = javascript;
+    }
+    getSum(){
+      return this.java + this.oracle +this.html5 + this.css3 + this.javascript;
+    }
+    
+    getAvg(){
+      return Math.round(this.getSum() / 5 * 10) / 10;
+    }
+
+    toString(){
+      return "이름 = " + this.name + ", java = " + this.java + ", oracle = " + this.oracle + ", html5 = " + this.html5 + ", css3 = " + this.css3 + ", javascript = " + this.javascript
+              + ", 총점 = " + this.getSum() + ", 평점 = " + this.getAvg();
+    }
+  }
    
 
   </script>
