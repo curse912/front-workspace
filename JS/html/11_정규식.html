@@ -112,15 +112,15 @@
              * 아닌 경우, 적합한 문자가 아닙니다. 경고창을 띄우세요.
              */
             const str = prompt('문자열을 입력');
-            
+
             const re1 = /^k/;
             const re2 = /h$/;
-            if(re1.test(str) && re2.test(str)){
+            if (re1.test(str) && re2.test(str)) {
                 alert('💯잘하셨습니다.💯');
-            }else{
+            } else {
                 alert('❗적합한 문자가 아닙니다.❗');
             }
-            
+
 
             // 잘못만듦
             // if(str.search(/^k/) & str.search(/h$/)){   
@@ -133,9 +133,9 @@
             // }
             //결과가 나오는 이유 :  if 조건문의 값 -> 존재하면 true로 형변환(boolean)
             //                                   -> 존재하지 않거나 0 이면 false로 형변환 (boolean)
-            
+
         }
-        function test5(){
+        function test5() {
             // . 임의의 한글자를 의미
             const re1 = /^...$/;
             console.log(re1).test('ab');    //false
@@ -143,13 +143,13 @@
             console.log(re1).test('abcd');  //false
 
             const re2 = /a.b/g; //3글자 & a~b
-            area.innerHTML = "aa aab aaab".replace(re2,'<mark>$&</mark>');
+            area.innerHTML = "aa aab aaab".replace(re2, '<mark>$&</mark>');
 
             const re3 = /in..$/;
-            
+
             ["goingo", "goin", "gointo", "going"].array.forEach(element => {
                 console.log(re3.test(element)); //T, F, T, F
-                
+
             });
 
             const re4 = /^c...k$/;
@@ -158,24 +158,24 @@
             });
         }
 
-        function test6(){
+        function test6() {
             /*
                 [] : 한글자를 의미한다.
                  대괄호 내부에는 문자의 범위를 표현한다.
                  대괄호 내부에서 사용하는 특수문자는 문자로써 해석된다.
                  대괄호 내부에서 시작이 ^인 경우 뒤쪽의 문자를 제외한 나머지 문자
             */
-            const s= "Javascript jquery Ajax 12345";
-            area.innerHTML = s.replace(/[aji3]/g,'<mark>$&</mark>');  //a 또는 j 또는 i 또는 3
-            area.innerHTML = s.replace(/[^aj]/g,'<mark>$&</mark>'); // a와 j를 제외한 모든것 (논리부정)
-            area.innerHTML = s.replace(/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/g,'<mark>$&</mark>'); 
-            area.innerHTML = s.replace(/[A-Z0-9]/g,'<mark>$&</mark>'); 
+            const s = "Javascript jquery Ajax 12345";
+            area.innerHTML = s.replace(/[aji3]/g, '<mark>$&</mark>');  //a 또는 j 또는 i 또는 3
+            area.innerHTML = s.replace(/[^aj]/g, '<mark>$&</mark>'); // a와 j를 제외한 모든것 (논리부정)
+            area.innerHTML = s.replace(/[ABCDEFGHIJKLMNOPQRSTUVWXYZ]/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/[A-Z0-9]/g, '<mark>$&</mark>');
 
             const s2 = '안녕하세요. 전 미국에서 온 james에요..';
-            area.innerHTML = s2.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g,'<mark>$&</mark>'); 
+            area.innerHTML = s2.replace(/[ㄱ-ㅎㅏ-ㅣ가-힣]/g, '<mark>$&</mark>');
         }
 
-        function test8(){
+        function test8() {
             /*
                 문자클래스(메타문자)
 
@@ -190,24 +190,24 @@
             var s = "A1 B2 c3 d_4 e:5' ` ffGG6767--__--!\"@#$%^&*()\t가\n나\n다\n";
 
             //결과값이 같음 : 숫자
-            area.innerHTML = s.replace(/\d/g,'<mark>$&</mark>');
-            area.innerHTML = s.replace(/[0-9]/g,'<mark>$&</mark>');
+            area.innerHTML = s.replace(/\d/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/[0-9]/g, '<mark>$&</mark>');
 
             //결과값이 같음 : 영문자,숫자
-            area.innerHTML = s.replace(/\w/g,'<mark>$&</mark>');
-            area.innerHTML = s.replace(/[a-z0-9_]/gi,'<mark>$&</mark>');
-            
+            area.innerHTML = s.replace(/\w/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/[a-z0-9_]/gi, '<mark>$&</mark>');
+
             //결과값이 같음 : 공백문자, 탭, 개행문자
-            area.innerHTML = s.replace(/\s/g,'<mark>$&</mark>');
-            area.innerHTML = s.replace(/[ \t\n]/g,'<mark>$&</mark>');
-            
+            area.innerHTML = s.replace(/\s/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/[ \t\n]/g, '<mark>$&</mark>');
+
             // ^리버스
-            area.innerHTML = s.replace(/\D/g,'<mark>$&</mark>');    //숫자 제외 모든것
-            area.innerHTML = s.replace(/\W/g,'<mark>$&</mark>');    //영문자, 숫자 제외 모든것
-            area.innerHTML = s.replace(/\S/g,'<mark>$&</mark>');    //공백문자, 탭, 개행문자 제외 모든것
+            area.innerHTML = s.replace(/\D/g, '<mark>$&</mark>');    //숫자 제외 모든것
+            area.innerHTML = s.replace(/\W/g, '<mark>$&</mark>');    //영문자, 숫자 제외 모든것
+            area.innerHTML = s.replace(/\S/g, '<mark>$&</mark>');    //공백문자, 탭, 개행문자 제외 모든것
         }
-        
-        function test9(){
+
+        function test9() {
             /*
                 그룹핑
                  () : 그룹핑    조건을 그룹화할때 사용
@@ -218,8 +218,84 @@
             const re1 = /[수목금]요일/g;
             const re2 = /(수|목|금)요일/g;
             const re3 = /(수요일|목요일|금요일)/g;
-            area.innerHTML = s.replace(re1,'<mark>$&</mark>');
-            area.innerHTML = s.replace(re2,'<mark>$&</mark>');
+            area.innerHTML = s.replace(re1, '<mark>$&</mark>');
+            area.innerHTML = s.replace(re2, '<mark>$&</mark>');
+        }
+        /*
+            escaping
+             - 메타문자를 실제문자값으로 사용하고자 한다면 \를 통해 이스케이핑 처리한다.
+             - 단, []내부에서는 escaping이 필요없다.
+        */
+        function test10() {
+            const s = '$12$ \\-\\ $25$';
+            area.innerHTML = s.replace(/\$/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/[$]/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/\$$/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/^\$/g, '<mark>$&</mark>');
+
+        }
+
+        function test11() {
+            /*
+                수량자
+                a* : a가 0개 이상
+                a+ : a가 1개 이상
+                a? : a가 0개 혹은 1개
+            */
+            const s = " aabc abc bc";
+            area.innerHTML = s.replace(/a*b/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/a+b/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/a?b/g, '<mark>$&</mark>');
+        }
+
+        function test12() {
+            /*
+                수량표현
+                a{5} : a가 5개
+                a{2,5} : a가 2~5개
+                a{3, } : a가 3개 이상
+                X a{ ,4} : 존재하지 않는 문법 X
+            */
+             const s = "aa aba abba abbba";
+            area.innerHTML = s.replace(/ab{2}a/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/ab{1,2}a/g, '<mark>$&</mark>');
+            area.innerHTML = s.replace(/ab{2,}a/g, '<mark>$&</mark>');
+
+            //숫자로시작하고, 영문자3글자이상 연달아 나오고, .마침표로 끝나는 문자열을 검사하는 정규식 작성
+            // true : 1abc안녕하세요. 3xyzkkk. 1ABC.
+            // false : 100 1cbㅋㅋㅋ. 아아아아.
+            //배열로 했기 때문에g사용하면 안됨
+
+            const re = /^\d[a-z]{3,}.*\.$/i;
+            ["1abc안녕하세요.", "3xyzkkk.", "1ABC."].forEach(function (s) {
+                console.log(re.test(s)); // true
+            });
+            ["100", "1cbㅋㅋㅋ.", "아아아아.", "1가나다abc.", "123abc다나가."].forEach(function (s) {
+                console.log(re.test(s)); // false
+            });  
+        }
+        function test13() {
+            /*
+                Look Around : 탐색
+
+                1. look ahead(전방탐색)
+                 - 000(?=(re)) : 000다음 re일치하는 패턴을 검색
+                 - 최종 반환되는 패턴은 000만 반환
+                 - 000(?!(re)) : 000다음 re와 일치하지 않는 패턴
+
+                2. look behind(후방탐색)
+                 - (?<=(re))000 : 000앞에 re일치하는 요소를 반환
+                 - (?<!(re))000 : 000앞에 re와 일치하지 않는 요소를 반환
+            */
+            const s = 'hello world hello tom hello jane';
+            area.innerHTML = s.replace(/hello(?=( world))/g,'<mark>$&</mark>');
+            area.innerHTML = s.replace(/hello(?!( world))/g,'<mark>$&</mark>');
+
+            const s2 = 'hello world lotte world t world';
+            // world앞에 hello가 들어간 world만 탐색
+            // world앞에 hello가 아닌 문자열이 들어간 world들 탐색
+            area.innerHTML = s2.replace(/(?<=(hello ))world/g,'<mark>$&</mark>');
+            area.innerHTML = s2.replace(/(?<!(hello ))world/g,'<mark>$&</mark>');
         }
     </script>
 

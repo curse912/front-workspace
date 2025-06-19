@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기본선택자</title>
+    <script src="./resources/jquery_3.7.1.js"></script>
+    <script src="./resources/02_selector.js"></script>
+</head>
+
+<body>
+    <h1>기본 선택자</h1>
+    <h3>* 아이디 선택자</h3>
+
+    <h1 id="id1">ID1</h1>
+    <h1 id="id2">ID2</h1>
+
+    <h3>* 태그 선택자</h3>
+    <p>Java</p>
+    <p>Oracle</p>
+    <p>JDBC</p>
+
+    <h3>* 클래스 선택자</h3>
+    <!--h1.item{Class$}*3-->
+    <h1 class="item">Class1</h1>
+    <h1 class="item">Class2</h1>
+    <h1 class="item">Class3</h1>
+
+    <script>
+        $(function () {
+            document.querySelector("#id1").style.color = "red";
+            // jQuery 영역 내부에서는 되도록 jQuery 매서드/함수만 사용
+
+            // jQuery 방식의 요소 선택
+            // $("선택자")
+            // 선택한 jquery의 매서드를 사용하여 값을 변경
+            $("#id2").css('color', 'pink');
+            $("#id2").html('내부요소 변경');
+
+            //태그선택자
+            $('p').css('color', 'blue');
+
+            //클래스 선택자
+            $('.item')
+                .css({ 'backgroundColor': 'lightgray', color: 'red' })
+                .click(function () {
+                    console.log('클릭됨');
+                });
+        });
+    </script>
+
+</body>
+
+</html>
