@@ -34,8 +34,43 @@
     <button type="button" data-url='https://www.iei.or.kr'>KH</button>&nbsp;
     <button type="button" data-url='https://www.w3schools.com'>와삼</button>
   </div>
+  <div class="btn-clone"></div>
   <script>
-    
+    document.querySelector('#btn-generate').onclick = function(){
+      // const urlArr = [{
+      //   url: 'https://www.naver.com', value: '네이버';
+      // }]
+
+      
+      const urlArr = [];
+      const btns = document.querySelectorAll('.btn-wrapper > button');
+      btns.forEach(function(button){
+        const newObj = {
+          url : button.dataset.url,
+          value : button.innerHTML
+        }
+        urlArr.push(newObj);
+      })
+      console.log(urlArr);
+
+      const buttonArr = urlArr.map(function(obj){
+        console.log('이동할 URL : ',obj.url);
+        const button = document.createElement('button');
+        const textNode = document.createTextNode(obj.value);  
+        //createTextNode는 내용을 넣는것 ['obj.value' : "obj.value"문자로 출력 ][obj.value : obj의 값을 가져옴 ]
+        button.onclick = function(){
+          location.assign(obj.url);
+        };
+        button.appendChild(textNode);
+        return button;
+      });
+      const cloneArea = document.querySelector('.btn-clone');
+      cloneArea.append(...buttonArr); //... : 전개 연산자 (스프레드)
+      // [1,2,3,4,5] = > 전개연산자 적용시 []대괄호가 벗겨짐
+      // ...[1,2,3,4,5] => 1,2,3,4,5
+
+      console.log(buttonArr);
+    };
   </script>
 
 </body>
