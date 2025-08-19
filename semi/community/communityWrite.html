@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>커뮤니티 글쓰기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* 기본 css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            padding: 30px;
+            font-family: 'SUIT', sans-serif;
+            background: linear-gradient(135deg, #eef1ff, #f4f6ff);
+            color: #333;
+        }
+
+        .container {
+            min-height: 90%;
+            min-width: 80%;
+            max-width: 1800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: block;
+        }
+
+        /*타이틀 css*/
+        /*커뮤니티 글쓰기 - 활동지역*/
+        .top-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .location .highlight {
+            color: #7f8cff;
+            font-weight: bold;
+        }
+
+        /*타이틀과 content 나누기*/
+        hr {
+            margin: 20px 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+
+        /* Content css*/
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /*작성취소+작성완료 버튼*/
+        .top-buttons {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .top-buttons button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .btn-cancel {
+            background-color: white;
+            color: #7f8fa6;
+            border: 1px solid #7f8fa6;
+        }
+
+        .btn-submit {
+            background-color: #7f8cff;
+            color: white;
+        }
+
+        /*카테고리css*/
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select,
+        input[type="text"],
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .select-category {
+            background-color: #d8d3ff;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+            color: #4b4b4b;
+        }
+
+        /*태그 css*/
+        #tagArea {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 6px 10px;
+            gap: 8px;
+        }
+
+        #tagArea input {
+            border: none;
+            outline: none;
+            font-size: 14px;
+            flex-grow: 1;
+            min-width: 100px;
+        }
+
+        .tag {
+            background-color: #eeeaff;
+            padding: 4px 10px;
+            margin-right: 5px;
+            border-radius: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .tag .remove-tag {
+            margin-left: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .search-icon {
+            margin-left: auto;
+            cursor: pointer;
+            color: #aaa;
+            width: 20px;
+            height: 20px;
+        }
+
+        /*게시글 내용css*/
+        textarea {
+            resize: vertical;
+            height: 150px;
+            font-size: 15px;
+        }
+
+        /*첨부파일*/
+        .file-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-label {
+            background-color: #e0d4fc;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #fileInput {
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        <!-- 상단 타이틀 / 위치 영역 -->
+        <div class="top-title">
+            <span class="community-title"><strong style="color: #7f8cff;">커뮤니티</strong> 글쓰기</span> |
+            <span class="location">활동지역 &gt; <span class="highlight">서울특별시 강남구</span> 📍</span>
+        </div>
+        <hr>
+
+        <div class="form-container">
+            <div class="top-buttons">
+                <button class="btn-cancel" id="cancelBtn">작성 취소</button>
+                <button class="btn-submit" id="submitBtn">작성 완료</button>
+            </div>
+
+            <div class="form-group">
+                <label>카테고리 선택</label>
+                <select id="category" class="select-category">
+                    <option value="">카테고리 선택</option>
+                    <option value="운동">운동</option>
+                    <option value="문화/예술">문화/예술</option>
+                    <option value="취미/오락">취미/오락</option>
+                    <option value="반려동물">반려동물</option>
+                    <option value="동네친구">동네친구</option>
+                    <option value="자기개발/스터디">자기개발/스터디</option>
+                    <option value="공포이야기">공포이야기</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="title">제목</label>
+                <input type="text" id="title" placeholder="제목을 입력하세요">
+            </div>
+
+            <div class="form-group">
+                <label for="tagInput">태그</label>
+                <div id="tagArea">
+                    <div class="tag-wrap">
+                        <div id="tagList"></div>
+                        <input type="text" id="tagInput" placeholder="엔터키로 추가 가능">
+                    </div>
+                    <img src="/semi/img/search.png" class="search-icon" />
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label for="content">게시글 상세 내용</label>
+                <textarea id="content" placeholder="욕설, 비속어 사용은 자제해주세요. 내용은 1000자까지 입력이 가능합니다."></textarea>
+            </div>
+
+            <div class="form-group file-group">
+                <label for="fileInput">첨부파일</label>
+                <span id="fileName" style="margin-left: 10px; color: #666;"></span>
+                <label for="fileInput" class="file-label">파일선택</label>
+                <input type="file" id="fileInput">
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        $(function () {
+            let tags = [];
+
+            //형식 초기화 형식
+            function resetForm() {
+                $('#category').val('');
+                $('#title').val('');
+                $('#tagInput').val('');
+                $('#content').val('');
+                $('#fileInput').val('');
+                tags = [];
+                $('#tagList').empty();
+                $('#fileName').text('');
+            }
+
+            //태그 만들기
+            $('#tagInput').on('keypress', function (e) {
+                if (e.which === 13) {
+                    e.preventDefault();
+                    let input = $(this).val().trim();
+                    if (input === '' || tags.includes(input)) return;
+                    if (tags.length >= 3) {
+                        alert("태그는 최대 3개까지 입력할 수 있습니다.");
+                        return;
+                    }
+                    tags.push(input);
+                    $('#tagList').append(`<span class="tag"> 
+                                                #${input}
+                                                <span class="remove-tag" data-tag="${input}">
+                                                    &times;
+                                                </span>
+                                            </span>`);
+                    $(this).val('');
+                }
+            });
+
+            // 태그지우기
+            $(document).on('click', '.remove-tag', function () {
+                const tag = $(this).data('tag');
+                tags = tags.filter(t => t !== tag);
+                $(this).parent().remove();
+            });
+
+            //파일명 띄우기
+            $('#fileInput').on('change', function () {
+                const file = this.files[0];
+                if (file) {
+                    $('#fileName').text(file.name);
+                } else {
+                    $('#fileName').text('');
+                }
+            });
+
+            //작성취소시 alert창 띄우기 및 양식 초기화
+            $('#cancelBtn').on('click', function () {
+                alert("작성이 취소되었습니다.");
+                resetForm;
+            });
+
+            //작성 완료시 alert창 띄우기
+            $('#submitBtn').on('click', function () {
+                const category = $('#category').val().trim();
+                const title = $('#title').val().trim();
+                const content = $('#content').val().trim();
+                let missing = [];
+
+                if (!category) missing.push("카테고리");
+                if (!title) missing.push("제목");
+                if (!content) missing.push("게시글 상세 내용");
+
+                if (missing.length > 0) {
+                    alert(`다음 항목을 작성해주세요: ${missing.join(", ")}`);
+                } else {
+                    // 태그 문자열 만들기
+                    const tagList = tags.length > 0 ? tags.map(t => `#${t}`).join(", ") : "태그 없음";
+
+                    // 파일 이름 가져오기
+                    const fileInput = $('#fileInput')[0];
+                    const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : "첨부된 파일 없음";
+
+                    alert(`✅ 작성이 완료되었습니다! \n
+📂 카테고리: ${category}
+📝 제목: ${title}
+💬 내용: ${content}
+🏷️ 태그: ${tagList}
+📎 파일: ${fileName}`);
+                    resetForm();
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

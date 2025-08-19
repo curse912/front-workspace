@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            
+            padding: 30px;
+            font-family: 'SUIT', sans-serif;
+            background: linear-gradient(135deg, #eef1ff, #f4f6ff);
+            color: #333;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+        }
+
+        .container {
+            min-height: 90%;
+            min-width: 80%;
+
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            display: block;
+        }
+        /* ─── 사이드바 ───────────────────────── */
+        .sidebar {
+            width: 220px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            font-size: 14px;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .filter p {
+            margin-top: 16px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .filter label {
+            display: flex;
+            align-items: center;
+            margin: 6px 0;
+            cursor: pointer;
+        }
+
+        .filter input {
+            margin-right: 8px;
+            accent-color: #7f8cff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 📌 Sidebar -->
+        <aside class="sidebar">
+            <h3>정렬 조건</h3>
+            <div class="filter">
+                <p><strong>지역</strong></p>
+                <label><input type="checkbox" /> 서울특별시</label>
+                <label><input type="checkbox" /> 경기도</label>
+                <label><input type="checkbox" /> 인천</label>
+
+                <p><strong>정렬순</strong></p>
+                <label><input type="radio" name="sort" /> 최신순</label>
+                <label><input type="radio" name="sort" /> 조회순</label>
+                <label><input type="radio" name="sort" /> 추천순</label>
+
+                <p><strong>카테고리</strong></p>
+                <label><input type="checkbox" /> 운동</label>
+                <label><input type="checkbox" /> 문화/예술</label>
+                <label><input type="checkbox" /> 동네친구</label>
+                
+            </div>
+        </aside>
+    </div>
+    
+</body>
+</html>

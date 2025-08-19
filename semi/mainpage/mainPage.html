@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IT다</title>
+  <link href="https://fonts.googleapis.com/css2?family=SUIT:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      font-family: 'SUIT', sans-serif;
+      background: linear-gradient(135deg, #eef1ff, #f4f6ff);
+      min-height: 80vh;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      min-height: 85%;
+      min-width: 85%;
+      max-width: 1800px;
+      background-color: #ffffff;
+      padding: 80px 60px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .headline {
+      text-align: center;
+      font-size: 56px;
+      font-weight: 600;
+      color: #6c63ff;
+      margin-top: 100px;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 24px;
+      color: #777;
+      margin-bottom: 70px;
+    }
+
+    .top-buttons {
+      position: absolute;
+      top: 40px;
+      right: 60px;
+      display: flex;
+      gap: 16px;
+    }
+
+    .btn {
+      background-color: #6c63ff;
+      color: white;
+      padding: 12px 26px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+
+    .btn:hover {
+      background-color: #4f49d2;
+    }
+
+    .search-filter-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: 0 auto 70px;
+      gap: 20px;
+    }
+
+    .filters {
+      flex-grow: 2;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 0;
+    }
+
+    .filter-btn {
+      background-color: #d8d6ff;
+      color: #333;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .filter-btn:hover {
+      background-color: #c2c0f5;
+    }
+
+    .search-bar {
+      flex-grow: 8;
+      display: flex;
+      align-items: center;
+      background-color: #f2f3f5;
+      border-radius: 30px;
+      padding: 14px 24px;
+      max-width: 600px;
+      min-width: 300px;
+      margin: 0;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .search-bar input {
+      border: none;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 18px;
+      font-family: inherit;
+    }
+
+    .search-bar img {
+      width: 24px;
+      height: 24px;
+      opacity: 0.6;
+      margin-left: 12px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background-color: #6c63ff;
+      color: white;
+      border-radius: 18px;
+      margin: 1 rem;
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+      cursor: pointer;
+      aspect-ratio: 1;
+
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card-title {
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .card-link {
+      font-size: 16px;
+      opacity: 0.9;
+      position: absolute;
+      /* 추가 */
+      bottom: 15%;
+      /* 아래쪽 여백 */
+      left: 50%;
+      /* 가로 중앙 정렬 시작점 */
+      transform: translateX(-50%);
+      /* 진짜 가로 중앙 맞춤 */
+    }
+
+    .card.community {
+      background-color: #5b567e;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      background-color: #d8d6ff;
+      color: #333;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      min-width: 180px;
+    }
+
+    .dropbtn_click svg.dropdown-icon {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      margin-left: 8px;
+    }
+
+    .dropbtn:hover {
+      background-color: #c2c0f5;
+    }
+
+    .dropbtn_click {
+      float: right;
+      margin-left: 8px;
+      font-size: 14px;
+      color: #5a5a5a;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      margin-top: 8px;
+      min-width: 180px;
+      overflow: hidden;
+    }
+
+    .dropdown-content .category {
+      padding: 14px 18px;
+      font-size: 15px;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .dropdown-content .category:hover {
+      background-color: #f0f0f0;
+    }
+
+    .dropdown-content.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="top-buttons">
+      <button class="btn" id="login-btn">로그인</button>
+      <button class="btn" id="signup-btn">회원가입</button>
+    </div>
+
+    <div class="headline">IT다</div>
+    <div class="subtitle">세상을 바꾸는 거래와 소통의 플랫폼</div>
+
+    <div class="search-filter-wrapper">
+      <div class="filters">
+        <!-- 거래유형 드롭다운 -->
+        <div class="dropdown" id="deal-type-dropdown">
+          <button class="dropbtn">
+            <span class="dropbtn_content">거래유형</span>
+            <span class="dropbtn_click" aria-hidden="true">
+              <svg class="dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                <path fill="#5a5a5a" d="M7 10l5 5 5-5z" />
+              </svg>
+            </span>
+          </button>
+          <div class="dropdown-content">
+            <div class="category">전체</div>
+            <div class="category">대여</div>
+            <div class="category">교환</div>
+            <div class="category">나눔</div>
+            <div class="category">경매</div>
+            <div class="category">커뮤니티</div>
+          </div>
+        </div>
+
+        <!-- 상품유형 드롭다운 -->
+        <div class="dropdown" id="product-type-dropdown">
+          <button class="dropbtn">
+            <span class="dropbtn_content">상품유형</span>
+            <span class="dropbtn_click" aria-hidden="true">
+              <svg class="dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                <path fill="#5a5a5a" d="M7 10l5 5 5-5z" />
+              </svg>
+            </span>
+          </button>
+          <div class="dropdown-content">
+            <div class="category">전체</div>
+            <div class="category">의류</div>
+            <div class="category">전자기기</div>
+            <div class="category">생활가전</div>
+            <div class="category">가구</div>
+            <div class="category">도서</div>
+            <div class="category">뷰티</div>
+            <div class="category">식품</div>
+            <div class="category">스포츠</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 검색창 -->
+      <div class="search-bar">
+        <input type="text" placeholder="무엇을 찾으시나요?" id="search-input" />
+        <img src="/semi/img/search.png" alt="search icon" id="search-btn" style="cursor:pointer;" />
+      </div>
+    </div>
+
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-title">대여</div>
+        <div class="card-link">게시판 바로가기 &gt;</div>
+      </div>
+      <div class="card">
+        <div class="card-title">교환</div>
+        <div class="card-link">게시판 바로가기 &gt;</div>
+      </div>
+      <div class="card">
+        <div class="card-title">나눔</div>
+        <div class="card-link">게시판 바로가기 &gt;</div>
+      </div>
+      <div class="card">
+        <div class="card-title">경매</div>
+        <div class="card-link">게시판 바로가기 &gt;</div>
+      </div>
+      <div class="card community">
+        <div class="card-title">커뮤니티</div>
+        <div class="card-link">게시판 바로가기 &gt;</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      // 드롭다운 클릭 열기
+      $('.dropbtn_click').on('click', function (e) {
+        e.stopPropagation();
+        const dropdown = $(this).closest('.dropdown');
+        $('.dropdown-content').not(dropdown.find('.dropdown-content')).removeClass('show');
+        dropdown.find('.dropdown-content').toggleClass('show');
+      });
+
+      // 항목 클릭 시 텍스트 설정
+      $('.dropdown .category').on('click', function () {
+        const value = $(this).text();
+        const dropdown = $(this).closest('.dropdown');
+        dropdown.find('.dropbtn_content').text(value).css('color', '#252525');
+        dropdown.find('.dropdown-content').removeClass('show');
+      });
+
+      // 외부 클릭 시 닫기
+      $(window).on('click', function () {
+        $('.dropdown-content').removeClass('show');
+      });
+    });
+
+    // 아이콘 클릭
+    $('.search img').click(function () {
+      alert('검색 아이콘 클릭!');
+    });
+
+    $(document).ready(function () {
+      // 로그인 클릭 핸들러
+      function loginClickHandler() {
+        alert('로그인창');
+        // 버튼 텍스트 변경
+        $('#login-btn').text('로그아웃');
+        $('#signup-btn').text('마이페이지');
+
+        // 로그아웃 클릭 핸들러로 변경
+        $('#login-btn').off('click').on('click', logoutClickHandler);
+        // 마이페이지 클릭 핸들러로 변경
+        $('#signup-btn').off('click').on('click', function () {
+          alert('마이페이지');
+        });
+      }
+
+      // 로그아웃 클릭 핸들러
+      function logoutClickHandler() {
+        alert('로그아웃');
+        // 버튼 원래대로 돌리기
+        $('#login-btn').text('로그인');
+        $('#signup-btn').text('회원가입');
+
+        // 다시 로그인/회원가입 클릭 이벤트 연결
+        $('#login-btn').off('click').on('click', loginClickHandler);
+        $('#signup-btn').off('click').on('click', function () {
+          alert('회원가입');
+        });
+      }
+
+      // 초기 이벤트 연결
+      $('#login-btn').on('click', loginClickHandler);
+      $('#signup-btn').on('click', function () {
+        alert('회원가입');
+      });
+      // 검색 버튼 클릭 이벤트
+      $('#search-btn').on('click', function () {
+        const dealType = $('#deal-type-dropdown .dropbtn_content').text().trim();
+        const productType = $('#product-type-dropdown .dropbtn_content').text().trim();
+        const searchText = $('#search-input').val().trim();
+
+        alert(`거래유형: ${dealType}\n상품유형: ${productType}\n검색어: ${searchText}`);
+      });
+
+      $('.card').click(function () {
+        const title = $(this).find('.card-title').text().trim();
+        alert(title);
+      })
+
+    });
+
+
+  </script>
+
+
+
+
+</body>
+
+</html>
