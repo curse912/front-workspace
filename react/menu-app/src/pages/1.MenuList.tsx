@@ -3,9 +3,12 @@ import type { Menu } from "../type/menu";
 import { loadMenus } from "../api/menuApi";
 import RadioGroup from "../components/RadioGroup";
 import useInput from "../hooks/useInput";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function MenuList(){
     const [menus, setMenus] = useState<Menu[]>([]);
+    const navigate = useNavigate();
 
     // #1. 게시글 불러오기
     //  - useEffect를 활용하여 컴포넌트가 마운트 될 때 1번만 로드되도록 설정
@@ -29,6 +32,13 @@ export default function MenuList(){
         type:'all',
         taste:'all'
     });
+
+    const handleSearchMenus = () => {
+        axios.get("http://localhost:8081/api/menus",{
+            params : searchKeyword
+        }).then( res => setMenus(res.data));
+
+    }
 
     return(
         <>
@@ -62,7 +72,7 @@ export default function MenuList(){
             </div>
 
             <input type="button" className="btn btn-block btn-outline-success btn-send"
-                value="검색"/>
+                value="검색" onClick={handleSearchMenus}/>
 
             <div className="result" id="menu-result">
                 <table className="table">
@@ -81,7 +91,7 @@ export default function MenuList(){
                     {   
                         menus && menus.map((menu) => {
                             return (
-                                <tr key={menu.id}>
+                                <tr key={menu.id} onClick={()=> navigate(`/menus/${menu.id}`)}>
                                     <td>{menu.id}</td>
                                     <td>{menu.restaurant}</td>
                                     <td>{menu.name}</td>
@@ -89,7 +99,11 @@ export default function MenuList(){
                                     <td>{menu.type}</td>
                                     <td>{menu.taste}</td>
                                     <td>
-                                            <button className="btn">수정</button>
+                                            <button className="btn" onClick={
+                                                (e) => {
+                                                    e.stopPropagation(),
+                                                    navigate("/menus/"+menu.id+"/edit")
+                                                }}>수정</button>
                                             <button className="btn">삭제</button>
                                     </td>
                                 </tr>
