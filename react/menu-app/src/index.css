@@ -241,6 +241,7 @@ header {
 .text-center {
   text-align: center;
 }
+
 /* Responsive Design */
 @media (max-width: 768px) {
   #container {
@@ -265,6 +266,7 @@ header {
     margin-bottom: 10px;
   }
 }
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -317,6 +319,7 @@ header {
     border: 1px solid #DEE2E6;
   }
 }
+
 @media (prefers-color-scheme: dark) {
   body {
     background-color: var(--bg-primary);
