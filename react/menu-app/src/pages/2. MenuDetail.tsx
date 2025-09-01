@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { initMenu, type Menu } from "../type/menu";
-import { loadMenus } from "../api/menuApi";
+import { getMenu, loadMenus } from "../api/menuApi";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -84,7 +84,8 @@ export const MenuDetail = () =>{
          //date를 menu라는 변수로 가져옴        isError : true/false값
     const {data:menu, isLoading, isError, error} = useQuery<Menu>({
         queryKey:['menu',id], // 캐시 구분용 키
-        queryFn:() => axios.get(`http://localhost:8081/api/menus/${id}`).then(res => res.data), //서버상태값 가져오는 코드
+        // queryFn:() => axios.get(`http://localhost:8081/api/menus/${id}`).then(res => res.data), //서버상태값 가져오는 코드
+        queryFn : ()=> getMenu(Number(id)),
         staleTime : 1000 * 60,  //Fresh 유지 시간
         gcTime : 1000 * 60 * 5,    //캐시메모리 저장시간
         enabled : true  //초기 실행 여부

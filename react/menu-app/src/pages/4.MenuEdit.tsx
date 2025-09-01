@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, type FormEvent } from "react";
 import RadioGroup from "../components/RadioGroup";
 import { useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { initMenu, type Menu, type MenuUpdate } from "../type/menu";
 import axios from "axios";
 import useInput from "../hooks/useInput";
+import { getMenu,updateMenu as updateMenuApi } from "../api/menuApi";
 
 const MenuEdit = () => {
     // #1. 메뉴 수정 기능 구현   
@@ -15,7 +16,8 @@ const MenuEdit = () => {
 
     const {data, isLoading, isError, error} = useQuery<Menu>({
         queryKey : ['menu',id],
-        queryFn : () => axios.get("http://localhost:8081/api/menus/"+id).then(res=>res.data),
+        // queryFn : () => axios.get("http://localhost:8081/api/menus/"+id).then(res=>res.data),
+        queryFn : ()=>getMenu(Number(id)),
         staleTime : 1000 * 60
     })
 
@@ -44,7 +46,35 @@ const MenuEdit = () => {
     //    - <div>Loading...</div>
     // 9. 수정 실패시 에러 메세지를 출력한다.
     //    - <div className="alert alert-danger">에러메세지</div>  
+    const queryClient = useQueryClient();
+    const mutation = useMutation({
+        // mutationFn : (newMenu:MenuUpdate) => axios.put("http://localhost:8081/api/menus/"+id, newMenu),
+        mutationFn : (newMenu:MenuUpdate) => updateMenuApi(Number(id), newMenu),
+        onSuccess : () => {
+            queryClient.invalidateQueries({queryKey:['menu',id]});
+            queryClient.invalidateQueries({queryKey:['menus']});
 
+            navigate(`/menus/${id}`,{state:{flash:'메뉴수정이 완료되었습니다.'}})
+        }
+    });
+
+    const updateMenu = (e:FormEvent) => {
+        e.preventDefault();
+        // 유효성검사
+        if(newMenus.restaurant == '' || newMenus.name == ''){
+            alert('모든 필드를 입력하시요')
+            return;
+        }
+        mutation.mutate(newMenus);
+    }
+
+    if(mutation.isPending){
+        return <div>제출중 ...</div>
+    }
+
+    if(mutation.isError){
+        return <div className="alert alert-danger">{mutation.error.message}</div>
+    }
     
     
     return (

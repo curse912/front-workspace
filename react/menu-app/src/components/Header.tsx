@@ -1,4 +1,8 @@
-import { Link } from "react-router-dom"
+import type { RootState } from "../store/store"
+import { useDispatch, useSelector } from "react-redux"
+import { Link, useNavigate } from "react-router-dom"
+import { logout } from "../features/authSlice";
+import { api } from "../api/menuApi";
 
 /*
     #components
@@ -6,6 +10,20 @@ import { Link } from "react-router-dom"
      ex) Button, Header,input 기타 등등...
 */
 const Header = () => {
+
+    const auth = useSelector((state:RootState) => state.auth);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+
+        api.post("/auth/logout")
+           .then(() =>{
+               dispatch(logout());
+               navigate("/login");
+           })
+    };
+
     return (
     <header>
         <div id="header-container">
@@ -21,6 +39,39 @@ const Header = () => {
                     <li className="nav-item">
                         <Link to="/menus/new" className="nav-link">메뉴 추가</Link>
                     </li>
+                    {
+                        auth.isAuthenticated ? 
+                        (
+                            <>
+                                <li className="nav-item">
+                                    <span style={{fontWeight:"bold"}}>
+                                        {auth.user?.name} {auth.user?.email}
+                                    </span>
+                                </li>
+                                <li className="nav-item">
+                                    <button
+                                        onClick={handleLogout}
+                                        style={{
+                                            padding: "8px 16px",
+                                            backgroundColor: "#DC3545",
+                                            color: "white",
+                                            border: "none",
+                                            borderRadius: "4px",
+                                            cursor: "pointer"
+                                        }}
+                                    >
+                                        로그아웃
+                                    </button>
+                                </li>
+                            </>
+                        )
+                        :
+                        (
+                            <li className="nav-item">
+                                <Link to="/login" className="nav-link">로그인</Link>
+                            </li>
+                        )
+                    }
                 </ul>
             </div>
         </div>
